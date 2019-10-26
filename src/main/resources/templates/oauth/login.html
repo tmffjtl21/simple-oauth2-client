@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    input{
+        width: 500px;
+    }
+    p{
+        width: 500px;
+    }
+</style>
+    <a href="http://localhost:8081/oauth/authorize?response_type=code&grant_type=autorization_code&scope=read&redirect_uri=http%3A%2F%2Flocalhost%3A9090%2Foauth%2Flogin&client_id=tjlee-client">
+    Oauth2 authorization_code 인증하러 가기</a>
+    <br/>
+    <br/>
+    <br/>
+    현재 로그인 :
+    <p th:text="${name}">익명</p>
+    <form action="https://localhost:8081/oauth/token" method="post" enctype="application/x-www-form-urlencoded">
+        code : <input type="text" name="code" th:value="${code}"/><br/>
+        client_id : <input type="text" name="client_id" value="tjlee-client"/><br/>
+        client_secret : <input type="text" name="client_secret" value="tjlee-secret"/><br/>
+        redirect_uri : <input type="text" name="redirect_uri" value="http://localhost:9090/oauth/login"/><br/>
+        grant_type : <input type="text" name="grant_type" value="authorization_code"/><br/>
+    <input type="submit" value="코드값 전송"/>
+</form>
+</body>
+</html>
